@@ -5,11 +5,11 @@ void exchange(int *array, int i, int j);
 
 int medianSelect5Index(int *array, int start, int end);
 
-int getPivotIndex(int *array, int start, int end);
+int getMedianOfMedianIndex(int *array, int start, int end);
 
 int partition(int *array, int start, int end);
 
-int BFPTRPartition(int *array, int start, int end, int pivotIndex);
+int BFPTRPartition(int *array, int start, int end);
 
 int BFPTRSelectIndex(int *array, int start, int end, int k);
 
@@ -53,7 +53,7 @@ int medianSelect5Index(int *array, int start, int end) {
     return (start + end) / 2;
 }
 
-int getPivotIndex(int *array, int start, int end) {
+int getMedianOfMedianIndex(int *array, int start, int end) {
     if (end - start < 5) {
         return medianSelect5Index(array, start, end);
     }
@@ -96,8 +96,9 @@ int partition(int *array, int start, int end) {
     return pivotPosition;
 }
 
-int BFPTRPartition(int *array, int start, int end, int pivotIndex) {
-    exchange(array, end, pivotIndex);
+int BFPTRPartition(int *array, int start, int end) {
+    int medianOfMedianIndex = getMedianOfMedianIndex(array, start, end);
+    exchange(array, end, medianOfMedianIndex);
     return partition(array, start, end);
 }
 
@@ -106,8 +107,7 @@ int BFPTRSelectIndex(int *array, int start, int end, int k) {
         return start;
     }
 
-    int pivotIndex = getPivotIndex(array, start, end);
-    pivotIndex = BFPTRPartition(array, start, end, pivotIndex);
+    int pivotIndex = BFPTRPartition(array, start, end);
 
     int nthMin = pivotIndex - start + 1;
 
