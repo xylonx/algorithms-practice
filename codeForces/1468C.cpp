@@ -17,10 +17,10 @@ struct cmp {
     }
 };
 
-// the main idea is clear. It just a simulation.
+// the main idea is clear. It is just a simulation.
 // The point of this question is speed. If just using vector, it will iterate each time, which is too slow.
 // Therefore, for weight(money), using priority_queue to speed up is a good idea.
-// To synchronizing 'sequence queue' and 'weight priority_queue', use pointers both of them.
+// To synchronizing 'sequence queue' and 'weight priority_queue', use pointers for both of them.
 int main(int argc, char **argv) {
     ios::sync_with_stdio(false);
     cin.tie(0);

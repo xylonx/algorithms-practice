@@ -53,7 +53,7 @@ int main(void)
     return 0;
 }
 
-// sum of subarray a can be seen as a binary number
+// sum of subarray can be seen as a binary number
 // so the problem can be transformed to whether there are two same continuous subarrrays of array b expected order
 //
 // if there are no same value in array b, it means no carry in binary number, which means there are no same value in array a
