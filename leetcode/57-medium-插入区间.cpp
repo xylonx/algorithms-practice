@@ -14,19 +14,21 @@ class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         if (intervals.size() == 0) return {newInterval};
+        if (newInterval.size() == 0) return intervals;
+
         vector<vector<int>> res;
-        int i;
-        for (i = 0; i < intervals.size() && intervals[i][1] < newInterval[0]; ++i) {
-            res.push_back(intervals[i]);
+        int i = 0, left = newInterval[0], right = newInterval[1];
+        while (i < intervals.size() && intervals[i][1] < left) res.push_back(intervals[i++]);
+
+        while (i < intervals.size() && intervals[i][0] <= right) {
+            left  = min(left, intervals[i][0]);
+            right = max(right, intervals[i][1]);
+            i++;
         }
 
-        int left = intervals[i][0], right = max(intervals[i][1], newInterval[1]);
+        res.push_back({left, right});
 
-        while (i < intervals.size() && intervals[i][0] <= right) ++i;
-
-        res.push_back({left, max(right, intervals[i - 1][1])});
-
-        res.insert(res.end(), intervals.begin() + i, intervals.end());
+        while (i < intervals.size()) res.push_back(intervals[i++]);
 
         return res;
     }
