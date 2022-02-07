@@ -1,3 +1,8 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
 /*
  * @lc app=leetcode.cn id=152 lang=cpp
  *
@@ -8,8 +13,7 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-
+        
     }
 };
 // @lc code=end
-
